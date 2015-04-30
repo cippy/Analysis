@@ -1,0 +1,38 @@
+#ifndef my_Real_Analysis_h
+#define my_Real_Analysis_h
+
+#include <TROOT.h>
+#include <TChain.h>
+#include <TFile.h>
+#include <TTree.h>
+
+#include <iostream>
+#include <cstdlib>
+
+#include "Analysis.h"
+
+namespace myAnalyzer {
+
+  class MyRealAnalysis : public Analysis {
+  public:
+
+    MyRealAnalysis(TTree *tree);
+    virtual ~MyRealAnalysis() { std::cout<<"~MyRealAnalysis() called"<<std::endl; }
+  
+    void Loop();
+
+  };
+
+  MyRealAnalysis::MyRealAnalysis(TTree *tree) : Analysis(tree) {
+
+    Analysis::Init(tree);
+
+  }
+
+}
+
+
+#endif
+
+
+
