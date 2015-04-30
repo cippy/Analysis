@@ -1,0 +1,169 @@
+I take some notes about results from Analysis.cc 
+
+*******************************
+*       GENERAL COMMENTS      *
+*******************************
+
+In the following, cuts due to trigger are not considered, that is, I assumed that the ntuple was made out of data passing the trigger selection: this assumption is corroborated  by the evidence of a sharp cut at 200 GeV in the mumet variable stored in the tree. However their contribution can reduce the initial number of entries and it would be useful to have the possibility to take them into account. 
+
+---------------- TRIGGER CUTS -------------------  taken from Nadir's slides-> https://indico.cern.ch/event/368971/contribution/6/material/slides/0.pdf
+
+1)signaljetpt>140 GeV & pfmet>100 GeV & mht>140 GeV       (variables are stored in tree.root)
+2)signaljetpt>80 GeV & pfmet>130 GeV & mht>130 GeV  
+Use one or the other trigger, the second should provide bigger acceptance (mainly more events)
+
+--------------  CUTS FLOW  -----------------------    the number of cuts is equal to NCUTS defined above
+
+1) MET > 250 GeV (I use mumet)
+2) njets<=2 (njets is the # of jets with pt>30)
+3) Noise cleaning on first jet ( NHEF<0.7; CHEF>0.2; NEEF<0.7 )
+4) signaljetpt>200 GeV; |signaljeteta|<2.1
+5) |secondjeteta|<4.5, dphi(jet1,jet2)<2.5; NHEF<0.7; NEEF<0.9 (only for events with 2 jets)
+6) muon veto: reject if pt>10GeV and |eta|<2.4
+7) electron veto: reject if pt>10GeV and |eta|<2.5
+8) tau veto: reject if pt>20GeV and |eta|<2.3 (in this analysis I reject events with taus because i don't have any variable for taus but their number
+9) MET > 300
+10) MET > 400
+11) MET > 500
+
+The last three could be omitted
+--------------------------------------------------------------
+
+
+**************************           Here the 4-th cut is :
+*          CUTS FLOW          *           signaljetpt>200GeV & |signaljeteta|<2.1
+**************************
+trigger cuts disabled
+-----------------------------------------------------------------------------------
+nwentries:  weighted total number of entries = 20522.3
+n:               number of events after i-th cut
+aR:            absolute ratio = entries(i)/nwentries
+rR:             relative ratio = entries(i)/entries(i-1)
+**************************
+cut	     n			      aR			 rR 
+1 |   8564.9610	         0.417355	       	  0.417350
+2 |   5298.8773	    	 0.258205	    	  0.618669
+3 |   4901.5531		 0.238844		  0.925017
+4 |   4020.8546	 	 0.195929		  0.820323
+5 |   3814.7278	         0.185885		  0.948736
+6 |   3813.9820	         0.185848	 	  0.999805
+7 |   3795.9001	         0.184967		  0.995259
+8 |   3765.0658	         0.183465		  0.991877
+9 |   1890.2984	         0.092111	 	  0.502063
+10 |   532.5346	         0.025949	 	  0.281720
+11 |   183.4433	         0.008939	 	  0.344472
+
+-------------------------------
+| Delta R between jets |
+-------------------------------
+Hj1j2DR: events = 20356.2390  (= # of events with secondjetpt != 0)
+Hj1j3DR: events = 19727.7400  (= # of events with thirdjetpt != 0)
+Hj2j3DR: events = 19727.7400  (= # of events with thirdjetpt != 0)
+
+-----------------------------------------------------------------------------------------------
+weighted total number of entries = 20522.3
+-----------------------------------------------------------------------------------------------
+Following numbers concerning jets refers to jets with pt>30 GeV
+events with exactly 1 jet             : 6643.87	0.32374 of total
+events with exactly 2 jets           : 6902.77	0.336355 of total
+events with exactly 3 jets           : 4028.07	0.196278 of total
+events with more than 1 jet        : 13878.4	0.67626 of total
+events with more than 2 jet        : 6975.62	0.339905 of total
+events with more than 3 jet        : 2947.54	0.143627 of total
+-----------------------------------------------------------------------------------------------------
+events with signaljetpt>30GeV   :    20450.8	0.996519 of total
+events with secondjetpt>30GeV :    13806.9	0.672779 of total
+events with thirdjetpt>30GeV     :    6904.17	0.336423 of total
+events with signaljetpt = 0         :    1.68553	8.2132e-05 of total
+events with secondjetpt = 0       :    167.46	0.00815991 of total
+events with thirdjetpt = 0           :    795.959	0.0387851 of total
+events with signaljetpt != 0        :    20520.6	0.999918 of total
+events with secondjetpt != 0      :    20354.8	0.99184 of total
+events with thirdjetpt != 0          :    19726.3	0.961215 of total
+--------------------------------------------------------
+
+
+**************************      Now the 4-th cut is : 
+*          CUTS FLOW          *      signaljetpt>110GeV & |signaljeteta|<2.4
+**************************
+trigger cuts disabled
+-----------------------------------------------------------------------------------
+nwentries:  weighted total number of entries = 20522.3
+n:               number of events after i-th cut
+aR:            absolute ratio = entries(i)/nwentries
+rR:             relative ratio = entries(i)/entries(i-1)
+**************************
+cut        n  	       aR 	       rR 
+1    8564.9610 	 0.417350	 0.417350
+2    5298.8773 	 0.258202	 0.618669
+3    4901.5531 	 0.238841	 0.925017
+4    4778.5491 	 0.232847	 0.974905
+5    4554.2918 	 0.221920	 0.953070
+6    4553.3842 	 0.221875	 0.999801
+7    4526.2193 	 0.220552	 0.994034
+8    4487.6943 	 0.218675	 0.991488
+9    2046.4301 	 0.099718	 0.456009
+10   549.3914 	 0.026771	 0.268463
+11   186.6839 	 0.009097	 0.339801
+ 
+-------------------------------
+| Delta R between jets |
+-------------------------------
+Hj1j2DR: events = 20356.2390
+Hj1j3DR: events = 19727.7400
+Hj2j3DR: events = 19727.7400
+
+----------------------------------------------------
+
+NOW I CONSIDERED TRIGGER CUTS
+-----------------------------------------------------------------
+**************************      Now the 4-th cut is : 
+*          CUTS FLOW          *      signaljetpt>110GeV & |signaljeteta|<2.4
+**************************
+trigger cuts enabled --> 8-130-130
+entries before trigger: 20522.3
+entries after trigger: 20055.1	0.977238 of total
+-----------------------------------------------------------------------------------
+nwentries:  weighted total number of entries = 20055.1
+n:               number of events after i-th cut
+aR:            absolute ratio = entries(i)/nwentries
+rR:             relative ratio = entries(i)/entries(i-1)
+**************************
+cut 	 n  	   aR 	           rR 
+1 |   8490.4925	 0.423358	 0.423358
+2 |   5238.9495	 0.261227	 0.617037
+3 |   4856.7748	 0.242171	 0.927051
+4 |   4774.9763	 0.238093	 0.983158
+5 |   4551.2048	 0.226935	 0.953137
+6 |   4550.3215	 0.226891	 0.999806
+7 |   4524.2332	 0.225590	 0.994267
+8 |   4485.7266	 0.223670	 0.991489
+9 |   2045.9128	 0.102014	 0.456094
+10 |   549.2692	 0.027388	 0.268471
+11 |   186.6519	 0.009307	 0.339819
+
+**************************      Now the 4-th cut is : 
+*          CUTS FLOW          *      signaljetpt>110GeV & |signaljeteta|<2.4
+**************************
+trigger cuts enabled --> 140-100-140
+entries before trigger: 20522.3
+entries after trigger: 17716.9	0.8633 of total
+-----------------------------------------------------------------------------------
+nwentries:  weighted total number of entries = 17716.9
+n:               number of events after i-th cut
+aR:            absolute ratio = entries(i)/nwentries
+rR:             relative ratio = entries(i)/entries(i-1)
+**************************
+cut 	 n  	   aR 	           rR 
+1 |   8129.2076	 0.458840	 0.458840
+2 |   5165.1905	 0.291541	 0.635387
+3 |   4790.6090	 0.270398	 0.927480
+4 |   4717.7486	 0.266286	 0.984791
+5 |   4494.5356	 0.253687	 0.952687
+6 |   4493.6700	 0.253638	 0.999807
+7 |   4468.6583	 0.252226	 0.994434
+8 |   4430.5935	 0.250078	 0.991482
+9 |   2042.6035	 0.115292	 0.461023
+10 |   549.0546	 0.030991	 0.268801
+11 |   186.6243	 0.010534	 0.339901
+

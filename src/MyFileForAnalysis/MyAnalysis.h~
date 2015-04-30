@@ -1,0 +1,28 @@
+#ifndef MyAnalysis_h
+#define MyAnalysis_h
+
+#include "../Analysis.h"
+
+#include <TROOT.h>
+#include <TChain.h>
+#include <TFile.h>
+
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
+#include <vector>
+
+class MyAnalysis : public Analysis {
+
+ public:
+
+ MyAnalysis(TTree *tree=0) : Analysis(tree);
+  virtual ~MyAnalysis();
+  
+  void Loop();
+
+}
+
+
+#endif
